@@ -1,0 +1,272 @@
+[
+  {
+    "id": "p01",
+    "nombre": "Kit x4 Iluminador Quesito Hightouille",
+    "precio": 15000,
+    "categoria": "Rostro",
+    "descripcion": "4 tonos cremosos, glow al instante",
+    "imagen": "productos/producto-01.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p02",
+    "nombre": "Polvos Banana Boom",
+    "precio": 12000,
+    "categoria": "Rostro",
+    "descripcion": "Polvo compacto matificante, acabado natural",
+    "imagen": "productos/producto-02.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p03",
+    "nombre": "Fijador Cosmic Night",
+    "precio": 25000,
+    "categoria": "Fijadores",
+    "descripcion": "Fija tu maquillaje hasta 12 horas",
+    "imagen": "productos/producto-03.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p04",
+    "nombre": "Contorno en Crema Bronzer Stamp",
+    "precio": 20000,
+    "categoria": "Rostro",
+    "descripcion": "Aplicador stamp, esculpe en segundos",
+    "imagen": "productos/producto-04.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p05",
+    "nombre": "Rubor en Crema Star",
+    "precio": 15000,
+    "categoria": "Rostro",
+    "descripcion": "Mejillas frescas con acabado luminoso",
+    "imagen": "productos/producto-05.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p06",
+    "nombre": "Rubor e Iluminador Puppy",
+    "precio": 15000,
+    "categoria": "Rostro",
+    "descripcion": "Paleta 4 en 1: rubor, contorno e iluminador",
+    "imagen": "productos/producto-06.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p07",
+    "nombre": "Torre Multi Iluminador Cat",
+    "precio": 15000,
+    "categoria": "Rostro",
+    "descripcion": "4 iluminadores apilables, mismo brillo intenso",
+    "imagen": "productos/producto-07.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p08",
+    "nombre": "Lip Oil Tinta Pretty Things",
+    "precio": 15000,
+    "categoria": "Labiales",
+    "descripcion": "Hidrata y tiñe con brillo natural",
+    "imagen": "productos/producto-08.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p09",
+    "nombre": "Gel Fijador de Cejas",
+    "precio": 15000,
+    "categoria": "Ojos",
+    "descripcion": "Cejas en su lugar todo el día",
+    "imagen": "productos/producto-09.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p10",
+    "nombre": "Delineador en Plumón Trendy",
+    "precio": 10000,
+    "categoria": "Ojos",
+    "descripcion": "Trazo preciso, negro intenso",
+    "imagen": "productos/producto-10.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p11",
+    "nombre": "Pestañina Boom",
+    "precio": 15000,
+    "categoria": "Ojos",
+    "descripcion": "Volumen explosivo y curva perfecta",
+    "imagen": "productos/producto-11.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p12",
+    "nombre": "Desmaquillante Bifásico Bob Esponja",
+    "precio": 25000,
+    "categoria": "Skincare",
+    "descripcion": "Remueve maquillaje e impurezas sin frotar",
+    "imagen": "productos/producto-12.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p13",
+    "nombre": "Sombra Bear",
+    "precio": 12000,
+    "categoria": "Ojos",
+    "descripcion": "Paleta de 6 tonos altamente pigmentados",
+    "imagen": "productos/producto-13.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p14",
+    "nombre": "Kit Labios Furia Trendy",
+    "precio": 25000,
+    "categoria": "Sets Especiales",
+    "descripcion": "Voluminizador, brillo y delineador en un kit",
+    "imagen": "productos/producto-14.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p15",
+    "nombre": "Brillo Cotton Candy",
+    "precio": 15000,
+    "categoria": "Labiales",
+    "descripcion": "Dúo dulce con aroma delicioso",
+    "imagen": "productos/producto-15.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p16",
+    "nombre": "Mascarilla Arcilla Nébula",
+    "precio": 15000,
+    "categoria": "Skincare",
+    "descripcion": "Limpieza profunda, piel visiblemente renovada",
+    "imagen": "productos/producto-16.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p17",
+    "nombre": "Primer Menta",
+    "precio": 15000,
+    "categoria": "Rostro",
+    "descripcion": "Prepara y sella tu base por más tiempo",
+    "imagen": "productos/producto-17.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p18",
+    "nombre": "Toallas Desmaquillantes Pool Party",
+    "precio": 10000,
+    "categoria": "Skincare",
+    "descripcion": "Formato pequeño, ideales para el bolso",
+    "imagen": "productos/producto-18.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p19",
+    "nombre": "Sombra Cookies 1 Trendy",
+    "precio": 20000,
+    "categoria": "Ojos",
+    "descripcion": "9 tonos dulces, mate y shimmer",
+    "imagen": "productos/producto-19.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p20",
+    "nombre": "Papeleta Sky Lover Trendy",
+    "precio": 10000,
+    "categoria": "Skincare",
+    "descripcion": "Controla la grasa sin dañar el maquillaje",
+    "imagen": "productos/producto-20.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p21",
+    "nombre": "Labial Doble Vaquero Toy Story 5",
+    "precio": 15000,
+    "categoria": "Sets Especiales",
+    "descripcion": "Edición coleccionable, 2 tonos en 1",
+    "imagen": "productos/producto-21.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p22",
+    "nombre": "Tinta Vaquera Toy Story 5",
+    "precio": 20000,
+    "categoria": "Labiales",
+    "descripcion": "Color intenso de larga duración",
+    "imagen": "productos/producto-22.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p23",
+    "nombre": "Grip Primer Pequeño Buzz Toy Story 5",
+    "precio": 20000,
+    "categoria": "Rostro",
+    "descripcion": "Formato mini, agarre y duración extra",
+    "imagen": "productos/producto-23.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p24",
+    "nombre": "Fijador Toy Story 5",
+    "precio": 25000,
+    "categoria": "Fijadores",
+    "descripcion": "Edición coleccionable, fijación todo el día",
+    "imagen": "productos/producto-24.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p25",
+    "nombre": "Monedero Lotso Toy Story",
+    "precio": 25000,
+    "categoria": "Sets Especiales",
+    "descripcion": "Monedero de peluche + rubor y gloss de regalo",
+    "imagen": "productos/producto-25.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p26",
+    "nombre": "Kit Labios en Barra Princesas Trendy",
+    "precio": 25000,
+    "categoria": "Sets Especiales",
+    "descripcion": "Delineador y labial, edición coleccionable",
+    "imagen": "productos/producto-26.jpg",
+    "destacado": false,
+    "disponible": true
+  },
+  {
+    "id": "p27",
+    "nombre": "Rubor Doble Loop Blush",
+    "precio": 15000,
+    "categoria": "Rostro",
+    "descripcion": "Dos tonos en un solo compacto",
+    "imagen": "productos/producto-27.jpg",
+    "destacado": false,
+    "disponible": true
+  }
+]

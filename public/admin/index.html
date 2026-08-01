@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Catálogo M&D Beauty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink-bg:#FFEAF3; --pink-primary:#FF2D87; --pink-deep:#B8155F;
+    --ink:#221A20; --cream:#FFFAF7; --line:rgba(34,26,32,0.12);
+    --green:#25D366; --red:#E23F5C;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--pink-bg); color:var(--ink);
+    font-family:'Nunito', sans-serif;
+  }
+  h1,h2,h3{font-family:'Baloo 2', sans-serif; font-weight:700; margin:0;}
+  button{font-family:inherit; cursor:pointer;}
+  input, select, textarea{font-family:inherit;}
+
+  /* ---------- Login ---------- */
+  #login-screen{
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .login-card{
+    background:var(--cream); border-radius:22px; padding:36px 32px;
+    box-shadow:0 14px 30px -12px rgba(255,45,135,0.35);
+    max-width:360px; width:100%; text-align:center;
+  }
+  .login-card h1{ font-size:1.5rem; margin-bottom:6px; }
+  .login-card p{ color:#6b5b62; font-weight:600; font-size:0.9rem; margin:0 0 20px;}
+  .login-card input{
+    width:100%; padding:12px 14px; border-radius:12px;
+    border:1.5px solid var(--line); font-size:1rem; margin-bottom:12px;
+  }
+  .login-card button{
+    width:100%; background:var(--pink-primary); color:#fff; border:none;
+    padding:12px; border-radius:999px; font-weight:800; font-size:0.95rem;
+  }
+  .login-error{ color:var(--red); font-weight:700; font-size:0.85rem; min-height:18px; margin-top:6px;}
+
+  /* ---------- Panel ---------- */
+  #panel-screen{ display:none; max-width:1100px; margin:0 auto; padding:24px 20px 80px; }
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:22px; flex-wrap:wrap; gap:10px;
+  }
+  .topbar h1{ font-size:1.4rem; }
+  .topbar a{ color:var(--pink-deep); font-weight:800; font-size:0.85rem; text-decoration:none; }
+  #btn-logout{
+    background:var(--ink); color:#fff; border:none; padding:9px 18px;
+    border-radius:999px; font-weight:800; font-size:0.82rem;
+  }
+
+  .panel-card{
+    background:var(--cream); border-radius:20px; padding:20px;
+    box-shadow:0 10px 24px -14px rgba(34,26,32,0.18); margin-bottom:22px;
+  }
+  .panel-card h2{ font-size:1.05rem; margin-bottom:14px; }
+
+  .add-form{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .add-form input, .add-form textarea{
+    width:100%; padding:10px 12px; border-radius:10px; border:1.5px solid var(--line);
+    font-size:0.9rem;
+  }
+  .add-form textarea{ grid-column:1 / -1; resize:vertical; min-height:44px;}
+  .add-form .full{ grid-column:1 / -1; }
+  .add-form button{
+    grid-column:1 / -1; background:var(--pink-primary); color:#fff; border:none;
+    padding:11px; border-radius:999px; font-weight:800;
+  }
+
+  .producto-row{
+    display:grid;
+    grid-template-columns:76px 1.4fr 0.9fr 0.9fr 1.6fr auto auto auto auto;
+    gap:12px; align-items:center;
+    padding:12px 4px; border-bottom:1px solid var(--line);
+  }
+  .producto-row:last-child{ border-bottom:none; }
+  .producto-row.header-row{
+    font-weight:800; font-size:0.72rem; text-transform:uppercase; color:#8a7580;
+    letter-spacing:.03em;
+  }
+  .thumb-wrap{ position:relative; width:64px; height:64px; }
+  .thumb{
+    width:64px; height:64px; border-radius:12px; object-fit:cover;
+    border:1.5px solid var(--line); background:#fff; display:block;
+  }
+  .thumb-upload{
+    position:absolute; inset:0; opacity:0; cursor:pointer;
+  }
+  .thumb-hint{
+    position:absolute; bottom:-6px; right:-6px; background:var(--pink-primary);
+    color:#fff; width:20px; height:20px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:11px;
+    border:2px solid var(--cream);
+  }
+  .producto-row input, .producto-row select{
+    width:100%; padding:8px 10px; border-radius:9px; border:1.5px solid var(--line);
+    font-size:0.85rem;
+  }
+  .toggle-disponible{
+    display:flex; align-items:center; gap:6px; font-weight:800; font-size:0.78rem;
+    white-space:nowrap;
+  }
+  .toggle-disponible input{ width:auto; transform:scale(1.2); }
+  .estado-agotado{ color:var(--red); }
+  .estado-ok{ color:var(--green); }
+
+  .btn-guardar{
+    background:var(--ink); color:#fff; border:none; padding:8px 14px;
+    border-radius:999px; font-weight:800; font-size:0.78rem;
+  }
+  .btn-guardar.saved{ background:var(--green); }
+  .btn-eliminar{
+    background:transparent; color:var(--red); border:1.5px solid var(--red);
+    padding:8px 12px; border-radius:999px; font-weight:800; font-size:0.78rem;
+  }
+
+  .msg{ font-size:0.8rem; font-weight:700; color:var(--pink-deep); margin-top:8px; min-height:16px; }
+
+  @media (max-width:900px){
+    .producto-row{ grid-template-columns:1fr; }
+    .producto-row.header-row{ display:none; }
+    .thumb-wrap{ margin-bottom:6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ---------- LOGIN ---------- -->
+<div id="login-screen">
+  <div class="login-card">
+    <h1>M&D Beauty</h1>
+    <p>Panel de administración del catálogo</p>
+    <input type="password" id="input-password" placeholder="Contraseña" autofocus>
+    <button id="btn-login">Entrar</button>
+    <p class="login-error" id="login-error"></p>
+  </div>
+</div>
+
+<!-- ---------- PANEL ---------- -->
+<div id="panel-screen">
+  <div class="topbar">
+    <h1>Panel de administración · M&D Beauty</h1>
+    <div style="display:flex; gap:14px; align-items:center;">
+      <a href="/" target="_blank">Ver catálogo público ↗</a>
+      <button id="btn-logout">Cerrar sesión</button>
+    </div>
+  </div>
+
+  <div class="panel-card">
+    <h2>➕ Agregar producto nuevo</h2>
+    <div class="add-form">
+      <input type="text" id="new-nombre" placeholder="Nombre del producto">
+      <input type="text" id="new-categoria" placeholder="Categoría (ej: Rostro, Ojos, Labiales)">
+      <input type="number" id="new-precio" placeholder="Precio (solo número)">
+      <label style="display:flex;align-items:center;gap:6px;font-weight:700;font-size:0.85rem;">
+        <input type="checkbox" id="new-destacado" style="width:auto;"> Marcar como "Nuevo"
+      </label>
+      <textarea id="new-descripcion" placeholder="Descripción (opcional)"></textarea>
+      <button id="btn-agregar">Agregar producto</button>
+    </div>
+    <p class="msg" id="add-msg"></p>
+  </div>
+
+  <div class="panel-card">
+    <h2>🛍️ Tus productos</h2>
+    <div class="producto-row header-row">
+      <span>Foto</span><span>Nombre</span><span>Categoría</span><span>Precio</span><span>Descripción</span><span>Disponible</span><span>Nuevo</span><span></span><span></span>
+    </div>
+    <div id="lista-productos"></div>
+  </div>
+</div>
+
+<script>
+const $ = (sel) => document.querySelector(sel);
+const loginScreen = $('#login-screen');
+const panelScreen = $('#panel-screen');
+const listaProductos = $('#lista-productos');
+
+let productos = [];
+
+// ---------- Sesión ----------
+async function verificarSesion(){
+  const res = await fetch('/api/sesion');
+  const data = await res.json();
+  if (data.autenticado) mostrarPanel();
+  else mostrarLogin();
+}
+
+function mostrarLogin(){
+  loginScreen.style.display = 'flex';
+  panelScreen.style.display = 'none';
+}
+
+function mostrarPanel(){
+  loginScreen.style.display = 'none';
+  panelScreen.style.display = 'block';
+  cargarProductos();
+}
+
+$('#btn-login').onclick = async () => {
+  const password = $('#input-password').value;
+  $('#login-error').textContent = '';
+  try {
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ password })
+    });
+    if (res.ok) { mostrarPanel(); }
+    else {
+      const data = await res.json();
+      $('#login-error').textContent = data.error || 'No se pudo iniciar sesión';
+    }
+  } catch(e){
+    $('#login-error').textContent = 'Error de conexión';
+  }
+};
+$('#input-password').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('#btn-login').click(); });
+
+$('#btn-logout').onclick = async () => {
+  await fetch('/api/logout', { method:'POST' });
+  mostrarLogin();
+};
+
+// ---------- Cargar y renderizar productos ----------
+async function cargarProductos(){
+  const res = await fetch('/api/productos');
+  productos = await res.json();
+  renderLista();
+}
+
+function renderLista(){
+  listaProductos.innerHTML = '';
+  productos.forEach(p => {
+    const row = document.createElement('div');
+    row.className = 'producto-row';
+    row.dataset.id = p.id;
+    row.innerHTML = `
+      <div class="thumb-wrap">
+        <img class="thumb" src="${p.imagen ? '/' + p.imagen : ''}" onerror="this.style.opacity=0.15" alt="foto">
+        <span class="thumb-hint">✎</span>
+        <input type="file" class="thumb-upload" accept="image/*" data-id="${p.id}">
+      </div>
+      <input type="text" class="f-nombre" value="${escapeAttr(p.nombre)}">
+      <input type="text" class="f-categoria" value="${escapeAttr(p.categoria)}">
+      <input type="number" class="f-precio" value="${p.precio}">
+      <input type="text" class="f-descripcion" value="${escapeAttr(p.descripcion || '')}">
+      <label class="toggle-disponible ${p.disponible === false ? 'estado-agotado' : 'estado-ok'}">
+        <input type="checkbox" class="f-disponible" ${p.disponible === false ? '' : 'checked'}>
+        <span class="txt-disponible">${p.disponible === false ? 'Agotado' : 'Disponible'}</span>
+      </label>
+      <label class="toggle-disponible">
+        <input type="checkbox" class="f-destacado" ${p.destacado ? 'checked' : ''}>
+        <span>Nuevo</span>
+      </label>
+      <button class="btn-guardar">Guardar</button>
+      <button class="btn-eliminar">Eliminar</button>
+    `;
+    listaProductos.appendChild(row);
+
+    // Guardar cambios
+    row.querySelector('.btn-guardar').onclick = async () => {
+      const btn = row.querySelector('.btn-guardar');
+      const body = {
+        nombre: row.querySelector('.f-nombre').value,
+        categoria: row.querySelector('.f-categoria').value,
+        precio: row.querySelector('.f-precio').value,
+        descripcion: row.querySelector('.f-descripcion').value,
+        disponible: row.querySelector('.f-disponible').checked,
+        destacado: row.querySelector('.f-destacado').checked
+      };
+      const res = await fetch('/api/productos/' + p.id, {
+        method: 'PUT',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(body)
+      });
+      if (res.ok){
+        btn.textContent = 'Guardado ✓';
+        btn.classList.add('saved');
+        setTimeout(() => { btn.textContent='Guardar'; btn.classList.remove('saved'); }, 1500);
+        await cargarProductos();
+      } else {
+        alert('No se pudo guardar el cambio.');
+      }
+    };
+
+    // Toggle disponible actualiza etiqueta en vivo (visual, se guarda al presionar Guardar)
+    row.querySelector('.f-disponible').addEventListener('change', (e) => {
+      const label = row.querySelector('.toggle-disponible');
+      const txt = row.querySelector('.txt-disponible');
+      if (e.target.checked){
+        label.classList.remove('estado-agotado'); label.classList.add('estado-ok');
+        txt.textContent = 'Disponible';
+      } else {
+        label.classList.remove('estado-ok'); label.classList.add('estado-agotado');
+        txt.textContent = 'Agotado';
+      }
+    });
+
+    // Eliminar producto
+    row.querySelector('.btn-eliminar').onclick = async () => {
+      if (!confirm(`¿Eliminar "${p.nombre}" del catálogo? Esta acción no se puede deshacer.`)) return;
+      const res = await fetch('/api/productos/' + p.id, { method:'DELETE' });
+      if (res.ok) cargarProductos();
+      else alert('No se pudo eliminar el producto.');
+    };
+
+    // Subir nueva foto
+    row.querySelector('.thumb-upload').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const formData = new FormData();
+      formData.append('imagen', file);
+      const thumb = row.querySelector('.thumb');
+      thumb.style.opacity = 0.4;
+      const res = await fetch('/api/productos/' + p.id + '/imagen', {
+        method: 'POST',
+        body: formData
+      });
+      if (res.ok){
+        const actualizado = await res.json();
+        thumb.src = '/' + actualizado.imagen + '?t=' + Date.now();
+        thumb.style.opacity = 1;
+      } else {
+        alert('No se pudo subir la foto (revisa que sea una imagen de menos de 8MB).');
+        thumb.style.opacity = 1;
+      }
+    });
+  });
+}
+
+function escapeAttr(str){
+  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
+// ---------- Agregar producto nuevo ----------
+$('#btn-agregar').onclick = async () => {
+  const nombre = $('#new-nombre').value.trim();
+  const addMsg = $('#add-msg');
+  if (!nombre){ addMsg.textContent = 'Escribe al menos el nombre del producto.'; return; }
+
+  const body = {
+    nombre,
+    categoria: $('#new-categoria').value.trim() || 'Sin categoría',
+    precio: $('#new-precio').value,
+    descripcion: $('#new-descripcion').value.trim(),
+    destacado: $('#new-destacado').checked,
+    disponible: true
+  };
+  const res = await fetch('/api/productos', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  if (res.ok){
+    addMsg.style.color = 'var(--green)';
+    addMsg.textContent = 'Producto agregado. Ahora súbele una foto en la lista de abajo ⬇️';
+    $('#new-nombre').value = ''; $('#new-categoria').value = '';
+    $('#new-precio').value = ''; $('#new-descripcion').value = '';
+    $('#new-destacado').checked = false;
+    cargarProductos();
+  } else {
+    addMsg.style.color = 'var(--red)';
+    addMsg.textContent = 'No se pudo agregar el producto.';
+  }
+};
+
+verificarSesion();
+</script>
+
+</body>
+</html>
